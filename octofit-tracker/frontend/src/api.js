@@ -18,3 +18,9 @@ export async function fetchCollection(collection) {
   if (!response.ok) throw new Error(`Unable to load ${collection}`);
   return collectionItems(await response.json());
 }
+
+export async function fetchEndpoint(endpoint) {
+  const response = await fetch(endpoint);
+  if (!response.ok) throw new Error(`Unable to load ${endpoint}`);
+  return collectionItems(await response.json());
+}

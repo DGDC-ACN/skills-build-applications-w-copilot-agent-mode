@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { fetchCollection } from '../api.js';
+import { fetchEndpoint } from '../api.js';
 
-export default function CollectionView({ collection, title, description, renderItem }) {
+export default function CollectionView({ endpoint, title, description, renderItem }) {
   const [items, setItems] = useState([]);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetchCollection(collection).then(setItems).catch((loadError) => setError(loadError.message));
-  }, [collection]);
+    fetchEndpoint(endpoint).then(setItems).catch((loadError) => setError(loadError.message));
+  }, [endpoint]);
 
   return (
     <section className="page-section">
