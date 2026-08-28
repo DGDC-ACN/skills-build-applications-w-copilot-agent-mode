@@ -14,6 +14,14 @@ app.use(cors());
 app.use(express.json());
 app.use('/api', router);
 
+app.get('/', (_request, response) => {
+  response.json({
+    name: 'OctoFit Tracker API',
+    status: 'ok',
+    endpoints: ['/api/health', '/api/users/', '/api/teams/', '/api/activities/', '/api/leaderboard/', '/api/workouts/'],
+  });
+});
+
 app.get('/api/health', (_request, response) => {
   response.json({ status: 'ok', database: db.readyState === 1 ? 'connected' : 'disconnected', apiBaseUrl });
 });
