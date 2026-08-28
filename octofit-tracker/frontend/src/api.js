@@ -1,8 +1,12 @@
 const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim();
+const browserHost = typeof window !== 'undefined' ? window.location.hostname : '';
+const forwardedApiHost = browserHost.replace('-5173.app.github.dev', '-8000.app.github.dev');
 
 export const apiBaseUrl = codespaceName
   ? `https://${codespaceName}-8000.app.github.dev`
-  : 'http://localhost:8000';
+  : forwardedApiHost !== browserHost
+    ? `https://${forwardedApiHost}`
+    : 'http://localhost:8000';
 
 export function collectionItems(payload) {
   if (Array.isArray(payload)) return payload;
